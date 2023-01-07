@@ -1,0 +1,12 @@
+version: '3.6'
+
+services:
+    web:
+        image: currentmap
+        build: .
+        command: python manage.py runserver
+        working_dir: /app
+        ports:
+            - "8000:8001"
+        volumes:
+            - .:/app
