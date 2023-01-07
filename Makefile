@@ -1,7 +1,7 @@
 DOCKER_EXE		= docker exec -i
 DOCKER_EXE_TTY	= docker exec -it
 DCO_EXE			= docker-compose
-PYTHON			= ${DOCKER_EXE_TTY} currentmap_web_1 python
+PYTHON			= ${DOCKER_EXE_TTY} openplanet_currentmap_backend_web_1 python
 
 up:
 	${DCO_EXE} up
@@ -15,4 +15,4 @@ migrate:
 	${PYTHON} manage.py migrate
 
 bash ssh:
-	${DOCKER_EXE_TTY} currentmap_web_1 bash
+	${DOCKER_EXE_TTY} openplanet_currentmap_backend_web_1 bash
