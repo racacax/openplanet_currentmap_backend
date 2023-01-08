@@ -1,0 +1,10 @@
+{% extends "default_template.html" %}
+{% block content %}
+{% if token %}
+    <span>Your access token for user {{ display_name }} ({{ login }}) has been reset. It also affects every other game your account is linked with.</span><br/>
+    <span>Token : {{ token }}</span>
+{% else %}
+    <span>An error occured while reseting your token (User : {{ display_name }} ({{ login }})). Are you sure you own an account ? Please try again or contact racacax#1150 on Discord.</span>
+    <br/><a href="{% url 'reset' %}">Back to login page</a>
+{% endif %}
+{% endblock content %}

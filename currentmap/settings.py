@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "currentmap.racacax.gq"]
 
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
+    'link.apps.LinkConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -130,3 +131,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 GAMES = [(0, "TM2020"), (1, "TM2"), (2, "TMTURBO")]
 GAMES_DICT = dict(GAMES)
+
+TRACKMANIA_APP_ID = os.getenv("TRACKMANIA_APP_ID")
+TRACKMANIA_APP_CLIENT_SECRET = os.getenv("TRACKMANIA_APP_CLIENT_SECRET")
+TRACKMANIA_API_BASE_URL = "https://api.trackmania.com/"
+
+
+MANIAPLANET_APP_ID = os.getenv("MANIAPLANET_APP_ID")
+MANIAPLANET_APP_CLIENT_SECRET = os.getenv("MANIAPLANET_APP_CLIENT_SECRET")
+MANIAPLANET_API_BASE_URL = "https://www.maniaplanet.com/"

@@ -20,6 +20,7 @@ handler500 = 'currentmap.views.handler500'
 
 urlpatterns = [
 
+    path('link/', include('link.urls')),
     path('api/', include('api.urls')),
     path('admin/', admin.site.urls),
 ]

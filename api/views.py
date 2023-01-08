@@ -35,7 +35,7 @@ class RegisterView(AuthenticatedBaseMixin, View):
                 if not request.auth_key:
                     request.auth_key = ''.join(
                         random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in
-                        range(64))
+                        range(32))
                     request.player = Player.objects.create(auth_key=Player.hash_auth_key(request.auth_key))
                 body: dict = json.loads(request.body)
                 login = body["login"]

@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>Reset Access Token</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <style type="text/css">
+            html {
+                background-color: #80808087;
+            }
+            body {
+                font-family: 'Roboto', sans-serif;
+                padding: 0;
+                margin: 0;
+            }
+            .header {
+                background-color: #000;
+                height: 80px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 32pt;
+                color: white;
+                font-weight: bold;
+            }
+            .body {
+                display: flex;
+                justify-content: center;
+                margin-top:50px;
+                font-size: 16pt;
+            }
+            .container {
+                max-width: 98%;
+                width: 600px;
+                background-color: #808080bf;
+                border-radius: 15px;
+                padding: 15px;
+            }
+            .button-container {
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .button {
+                display: block;
+                text-decoration: none;
+                border-radius: 15px;
+                padding: 15px;
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+                background: #ffffffcf;
+                color: #000;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <a style="text-decoration: none; color: white;" href="{% url 'reset' %}">Current Map</a>
+        </div>
+        <div class="body">
+            <div class="container">
+{% block content %}{% endblock content %}
+            </div>
+        </div>
+
+
+
+    </body>
+</html>
