@@ -4,7 +4,7 @@ import requests
 from django.urls import reverse
 
 from currentmap.settings import TRACKMANIA_API_BASE_URL, TRACKMANIA_APP_ID, TRACKMANIA_APP_CLIENT_SECRET, \
-    MANIAPLANET_API_BASE_URL, MANIAPLANET_APP_CLIENT_SECRET, MANIAPLANET_APP_ID
+    MANIAPLANET_API_BASE_URL, MANIAPLANET_APP_CLIENT_SECRET, MANIAPLANET_APP_ID, BASE_URL
 
 
 class Trackmania2020API(object):
@@ -19,7 +19,7 @@ class Trackmania2020API(object):
                               data={"grant_type": "authorization_code",
                                     "client_secret": TRACKMANIA_APP_CLIENT_SECRET,
                                     "client_id": TRACKMANIA_APP_ID,
-                                    "redirect_uri": self.request.build_absolute_uri(reverse('reset_2020')),
+                                    "redirect_uri": BASE_URL + reverse('reset_2020'),
                                     "code": self.code},
                               headers={'Accept': 'application/json'})
             result = r.json()
@@ -61,7 +61,7 @@ class ManiaPlanet4API(object):
                               data={"grant_type": "authorization_code",
                                     "client_secret": MANIAPLANET_APP_CLIENT_SECRET,
                                     "client_id": MANIAPLANET_APP_ID,
-                                    "redirect_uri": self.request.build_absolute_uri(reverse('reset_mp4')),
+                                    "redirect_uri": BASE_URL + reverse('reset_mp4'),
                                     "code": self.code},
                               headers={'Accept': 'application/json'})
             result = r.json()
