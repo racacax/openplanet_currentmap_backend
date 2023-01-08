@@ -4,7 +4,8 @@ import requests
 from django.urls import reverse
 
 from currentmap.settings import TRACKMANIA_API_BASE_URL, TRACKMANIA_APP_ID, TRACKMANIA_APP_CLIENT_SECRET, \
-    MANIAPLANET_API_BASE_URL, MANIAPLANET_APP_CLIENT_SECRET, MANIAPLANET_APP_ID, BASE_URL
+    MANIAPLANET_API_BASE_URL, MANIAPLANET_APP_CLIENT_SECRET, MANIAPLANET_APP_ID, BASE_URL, TMUF_API_BASE_URL, \
+    TMUF_API_PASSWORD, TMUF_API_USERNAME
 
 
 class Trackmania2020API(object):
@@ -38,11 +39,12 @@ class Trackmania2020API(object):
     """
     Adapted from Beu PHP Script
     """
+
     @staticmethod
     def get_login_from_account_id(account_id: str):
         account_id = account_id.replace("-", "")
         login = ""
-        for pair in [account_id[i:i+2] for i in range(0, len(account_id), 2)]:
+        for pair in [account_id[i:i + 2] for i in range(0, len(account_id), 2)]:
             login += chr(int(int(pair, 16)))
         login = base64.b64encode(login.encode('latin-1')).decode("utf-8")
         login = login.replace("+", "-").replace("/", "_").replace("=", "")
@@ -71,6 +73,33 @@ class ManiaPlanet4API(object):
 
     def get_user_data(self):
         r = requests.get(f"{MANIAPLANET_API_BASE_URL}webservices/me",
+                         headers={'Accept': 'application/json', 'Authorization': f'Bearer {self.get_token()}'})
+        result = r.json()
+        return result
+
+
+class TMUFAPI(object):
+    def __init__(self, code, request):
+        self.code = code
+        self.request = request
+        self.token = None
+
+    def get_token(self):
+        if not self.token:
+            r = requests.post(f"{TMUF_API_BASE_URL}oauth2/token/",
+                              data={"grant_type": "authorization_code",
+                                    "client_secret": TMUF_API_PASSWORD,
+                                    "client_id": TMUF_API_USERNAME,
+                                    "redirect_uri": BASE_URL + reverse('reset_tmuf'),
+                                    "code": self.code},
+                              headers={'Accept': 'application/json'})
+            result = r.json()
+            if "access_token" in result:
+                self.token = result["access_token"]
+        return self.token
+
+    def get_user_data(self):
+        r = requests.get(f"{TMUF_API_BASE_URL}player/",
                          headers={'Accept': 'application/json', 'Authorization': f'Bearer {self.get_token()}'})
         result = r.json()
         return result

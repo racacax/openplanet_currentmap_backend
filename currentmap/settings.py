@@ -129,7 +129,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-GAMES = [(0, "TM2020"), (1, "TM2"), (2, "TMTURBO")]
+GAMES = [(0, "TM2020"), (1, "TM2"), (2, "TMTURBO"), (3, "TMUF")]
 GAMES_DICT = dict(GAMES)
 
 TRACKMANIA_APP_ID = os.getenv("TRACKMANIA_APP_ID")
@@ -140,5 +140,9 @@ TRACKMANIA_API_BASE_URL = "https://api.trackmania.com/"
 MANIAPLANET_APP_ID = os.getenv("MANIAPLANET_APP_ID")
 MANIAPLANET_APP_CLIENT_SECRET = os.getenv("MANIAPLANET_APP_CLIENT_SECRET")
 MANIAPLANET_API_BASE_URL = "https://www.maniaplanet.com/"
+
+TMUF_API_USERNAME = os.getenv("TMUF_API_USERNAME")
+TMUF_API_PASSWORD = os.getenv("TMUF_API_PASSWORD")
+TMUF_API_BASE_URL = "http://ws.trackmania.com/"
 
 BASE_URL = os.getenv("BASE_URL")

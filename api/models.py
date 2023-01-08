@@ -43,7 +43,7 @@ class Invite(models.Model):
 
 class PlayerAccount(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE, related_name="player_accounts")
-    login = models.CharField(max_length=64, unique=True)
+    login = models.CharField(max_length=64)
     name = models.CharField(max_length=128)
     nickname = models.CharField(max_length=128, null=True)
     club_tag = models.CharField(max_length=128, null=True)
@@ -51,7 +51,7 @@ class PlayerAccount(models.Model):
     game = models.IntegerField(choices=GAMES)
 
     class Meta:
-        unique_together = ("player", "game")
+        unique_together = (("player", "game"), ("game", "login"))
 
     @property
     def display_name(self):
