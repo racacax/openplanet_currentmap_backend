@@ -6,7 +6,8 @@ from django.utils.crypto import get_random_string
 from django.views.generic import TemplateView
 
 from api.models import Player
-from currentmap.settings import TRACKMANIA_API_BASE_URL, TRACKMANIA_APP_ID, MANIAPLANET_API_BASE_URL, MANIAPLANET_APP_ID
+from currentmap.settings import TRACKMANIA_API_BASE_URL, TRACKMANIA_APP_ID, MANIAPLANET_API_BASE_URL, \
+    MANIAPLANET_APP_ID, BASE_URL
 from link.api import Trackmania2020API, ManiaPlanet4API
 from link.utils import get_reset_token_from_login
 
@@ -19,11 +20,11 @@ class ResetView(TemplateView):
         context_data["tm2020_link"] = f"{TRACKMANIA_API_BASE_URL}oauth/authorize?response_type=code" \
                                       f"&client_id={TRACKMANIA_APP_ID}" \
                                       f"&scope=" \
-                                      f"&redirect_uri={self.request.build_absolute_uri(reverse('reset_2020'))}"
+                                      f"&redirect_uri={BASE_URL + reverse('reset_2020')}"
         context_data["mp4_link"] = f"{MANIAPLANET_API_BASE_URL}login/oauth2/authorize?response_type=code" \
                                    f"&client_id={MANIAPLANET_APP_ID}" \
                                    f"&scope=basic" \
-                                   f"&redirect_uri={self.request.build_absolute_uri(reverse('reset_mp4'))}"
+                                   f"&redirect_uri={BASE_URL + reverse('reset_mp4')}"
 
         return context_data
 

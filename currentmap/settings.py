@@ -140,3 +140,5 @@ TRACKMANIA_API_BASE_URL = "https://api.trackmania.com/"
 MANIAPLANET_APP_ID = os.getenv("MANIAPLANET_APP_ID")
 MANIAPLANET_APP_CLIENT_SECRET = os.getenv("MANIAPLANET_APP_CLIENT_SECRET")
 MANIAPLANET_API_BASE_URL = "https://www.maniaplanet.com/"
+
+BASE_URL = os.getenv("BASE_URL")
